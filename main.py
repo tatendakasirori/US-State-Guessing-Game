@@ -10,6 +10,7 @@ t.shape(image)
 
 
 DATA = pd.read_csv("50_states.csv")
+writter = Writter()
 
 def find_state(answer):
     for state in DATA.state:
@@ -21,11 +22,11 @@ def find_state(answer):
 
 game_on = True
 while game_on:
-    answer = screen.textinput(title= "Guess the state", prompt= "What's another state's name?")
+    answer = screen.textinput(title= f"{writter.correct}/50", prompt= "What's another state's name?")
     coord = find_state(answer)
     if coord != False:
-        writter = Writter(coord,answer)
         writter.name_state(coord,answer)
+        writter.correct += 1
        
 t.mainloop()
 
