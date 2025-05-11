@@ -25,10 +25,7 @@ while len(guessed_states) < 50:
     answer = screen.textinput(title= f"{writter.correct}/50", prompt= "What's another state's name?")
     answer = answer.title()
     if answer.lower() == "exit":
-        missing_states = []
-        for state in DATA.state:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [i for i in DATA.state if i not in guessed_states]
         mis_states_df = pd.DataFrame(missing_states,columns=["state"])
         mis_states_csv = mis_states_df.to_csv("missed.csv")
         break
